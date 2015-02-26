@@ -1,0 +1,51 @@
+diff --git a/linux_hardware/scripts/laptop_battery.py b/linux_hardware/scripts/laptop_battery.py
+index b36b8db..f64f2d2 100755
+--- a/linux_hardware/scripts/laptop_battery.py
++++ b/linux_hardware/scripts/laptop_battery.py
+@@ -102,10 +102,10 @@ def _read_string(filename, default=""):
+     return data
+ 
+ def _read_number(filename, default=0):
+-    try: 
++    try:
+         data = int(_read_string(filename))
+         return data
+-    except exceptions.ValueError:
++    except:
+         return default
+ 
+ def _check_battery_info(_battery_acpi_path):
+@@ -120,8 +120,8 @@ def _check_battery_info(_battery_acpi_path):
+         design_capacity    = _strip_Ah(batt_info.get('design capacity',    '0 mAh'))
+         last_full_capacity = _strip_Ah(batt_info.get('last full capacity', '0 mAh'))
+     else:
+-        design_capacity    = _read_number(_battery_acpi_path + '/energy_full')
+-        last_full_capacity = _read_number(_battery_acpi_path + '/energy_full_design')        
++        design_capacity    = _read_number(_battery_acpi_path + '/charge_full')
++        last_full_capacity = _read_number(_battery_acpi_path + '/charge_full_design')        
+ 
+     return (design_capacity, last_full_capacity)
+ 
+@@ -165,11 +165,11 @@ def _check_battery_state(_battery_acpi_path):
+ 
+         state = _read_string(_battery_acpi_path+'/status', 'discharging').lower()
+         rv.charge_state = state_to_val.get(state, 0)
+-        rv.rate     = _read_number(_battery_acpi_path + '/power_now')
++        rv.rate     = _read_number(_battery_acpi_path + '/current_now')
+         if rv.charge_state == LaptopChargeStatus.DISCHARGING:
+             rv.rate = math.copysign(rv.rate, -1) # Need to set discharging rate to negative
+         
+-        rv.charge   = _read_number(_battery_acpi_path + '/energy_now')
++        rv.charge   = _read_number(_battery_acpi_path + '/charge_now')
+         rv.voltage  = _read_number(_battery_acpi_path + '/voltage_now')
+         rv.present  = _read_number(_battery_acpi_path + '/present') == 1
+ 
+@@ -209,7 +209,7 @@ class LaptopBatteryMonitor(object):
+         self._diag_pub  = rospy.Publisher('/diagnostics', DiagnosticArray)
+         
+         # Battery info
+-        self._batt_acpi_path = rospy.get_param('~acpi_path', "/proc/acpi/battery/BAT0")
++        self._batt_acpi_path = rospy.get_param('~acpi_path', "/sys/class/power_supply/BAT1")
+         self._batt_design_capacity = 0
+         self._batt_last_full_capacity = 0
+         self._last_info_update = 0
