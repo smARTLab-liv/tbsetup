@@ -28,6 +28,15 @@ else
     do_reboot=1
 fi
 
+if [ -e master_sync.update ]
+then
+    echo master_sync.update already set
+else
+    apt-get install ros-indigo-master-sync-fkie
+    touch master_sync.update
+fi
+
+
 if [ "$do_reboot" -eq 1 ]
 then
     reboot
