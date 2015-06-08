@@ -7,6 +7,7 @@ test()
     if [ "$?" -eq 0 ]
     then
         echo Network connection now initialised # do something
+	cd /home/turtlebot/scripts
         rm sync.sh > /dev/null 2>&1
 	wget -q "https://raw.githubusercontent.com/smARTLab-liv/tbsetup/master/sync.sh"
 	chmod +x sync.sh
