@@ -20,7 +20,8 @@ if [ -e hostname.update ]
 then
     echo Hostname already set
 else
-    rm set_hostname.sh*
+    rm set_hostname.sh*  > /dev/null 2>&1
+    rm macadr-eth1.sh*  > /dev/null 2>&1
     wget -q https://raw.githubusercontent.com/smARTLab-liv/tbsetup/master/set_hostname.sh
     wget -q https://raw.githubusercontent.com/smARTLab-liv/tbsetup/master/macadr-eth1.txt
     chmod +x set_hostname.sh
@@ -60,29 +61,28 @@ fi
 ##all the rest will be done as user turtlebot
 sudo -H -u turtlebot /bin/bash - << eof
 
+if [ -x /home/turtlebot/ros/src/collvoid ]
+then
+    echo already checked out
+    cd /home/turtlebot/ros/src/collvoid
+    git pull
+else
+    cd /home/turtlebot/ros/src
+    git clone https://github.com/daenny/collvoid.git -b dev-experimental
+fi
+
+
 eof
 
-# if [ -x /home/turtlebot/ros_catkin/src/swarming_turtles ]
-# then
-#     echo already checked out
-# else
-#     cd /home/turtlebot/ros_catkin/src
-#     hg clone http://swarmlab.dyndns.org/swarmturtles/swarming_turtles
-# fi
 
+#source /opt/ros/indigo/setup.bash
+#source /home/turtlebot/ros/devel/setup.bash
+#
+#export ROS_WORKSPACE=/home/turtlebot/ros
+#export ROS_PACKAGE_PATH=$ROS_WORKSPACE:$ROS_PACKAGE_PATH
 
-# cd /home/turtlebot/ros_catkin/src/swarming_turtles
-# source /etc/ros/setup.bash
-# source /opt/ros/groovy/setup.bash
-# source /home/turtlebot/ros_catkin/devel/setup.bash
+#cd /home/turtlebot/ros
 
-# export ROS_WORKSPACE=/home/turtlebot/ros_catkin
-# export ROS_PACKAGE_PATH=/home/turtlebot/ros:$ROS_WORKSPACE:$ROS_PACKAGE_PATH
-
-# cd /home/turtlebot/ros
-
-# echo making catkin
-# catkin_make
-
-# eof
+#echo making catkin
+#catkin_make
 

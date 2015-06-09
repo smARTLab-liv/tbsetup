@@ -11,7 +11,7 @@ test()
         rm sync.sh > /dev/null 2>&1
 	wget -q "https://raw.githubusercontent.com/smARTLab-liv/tbsetup/master/sync.sh"
 	chmod +x sync.sh
-	./sync.sh
+	./sync.sh >> /home/turtlebot/scripts/sync.log
         exit
     else
         echo "No network connection available, skipping updates"
