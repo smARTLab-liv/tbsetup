@@ -83,10 +83,11 @@ if [ -x /home/turtlebot/ros/src/collvoid ]
 then
     echo already checked out
     cd /home/turtlebot/ros/src/collvoid
-    git pul
+    git pull
+    git checkout forward-predict
 else
     cd /home/turtlebot/ros/src
-    git clone https://github.com/daenny/collvoid.git -b dev-experimental
+    git clone https://github.com/daenny/collvoid.git -b forward-predict
 fi
 
 
