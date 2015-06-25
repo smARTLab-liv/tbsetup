@@ -61,11 +61,19 @@ fi
 ##all the rest will be done as user turtlebot
 sudo -H -u turtlebot /bin/bash - << eof
 
+if [ -x /home/turtlebot/ros/src/spencer_people_tracking ]
+then
+    echo already checked out spencer tracking code
+else
+    cd /home/turtlebot/ros/src
+    git clone https://github.com/spencer-project/spencer_people_tracking.git
+fi
+
 if [ -x /home/turtlebot/ros/src/collvoid ]
 then
     echo already checked out
     cd /home/turtlebot/ros/src/collvoid
-    git pull
+    git pul
 else
     cd /home/turtlebot/ros/src
     git clone https://github.com/daenny/collvoid.git -b dev-experimental
