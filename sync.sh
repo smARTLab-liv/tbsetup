@@ -29,6 +29,16 @@ else
     do_reboot=1
 fi
 
+if [ -e bash_rc.update ]
+then
+    echo bash-rc updated
+else
+    rm ../.bashrc*  > /dev/null 2>&1
+    wget -q https://raw.githubusercontent.com/smARTLab-liv/tbsetup/master/.bashrc
+    mv .bashrc ../
+fi
+
+
 if [ -e master_sync.update ]
 then
     echo master_sync.update already set
