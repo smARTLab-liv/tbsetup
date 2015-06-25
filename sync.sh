@@ -44,7 +44,8 @@ if [ -e master_sync.update ]
 then
     echo master_sync.update already set
 else
-    apt-get install ros-indigo-master-sync-fkie
+    apt-get update
+    apt-get install -y ros-indigo-master-sync-fkie
     touch master_sync.update
 fi
 
@@ -52,6 +53,7 @@ if [ -e libsvm.update ]
 then
     echo libsvm.update already set
 else
+    apt-get update
     apt-get install -y libsvm-dev
     touch libsvm.update
 fi
