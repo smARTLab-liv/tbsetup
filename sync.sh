@@ -58,6 +58,15 @@ else
     touch libsvm.update
 fi
 
+if [ -e people.update ]
+then
+    echo people.update already set
+else
+    apt-get update
+    apt-get install -y ros-indigo-people
+    touch people.update
+fi
+
 
 if [ "$do_reboot" -eq 1 ]
 then
