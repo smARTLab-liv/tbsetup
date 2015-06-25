@@ -52,7 +52,7 @@ if [ -e libsvm.update ]
 then
     echo libsvm.update already set
 else
-    apt-get install libsvm-dev
+    apt-get install -y libsvm-dev
     touch libsvm.update
 fi
 
