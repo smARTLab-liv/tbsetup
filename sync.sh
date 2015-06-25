@@ -36,6 +36,7 @@ else
     rm ../.bashrc*  > /dev/null 2>&1
     wget -q https://raw.githubusercontent.com/smARTLab-liv/tbsetup/master/.bashrc
     mv .bashrc ../
+    touch bash-rc.update
 fi
 
 
@@ -45,6 +46,14 @@ then
 else
     apt-get install ros-indigo-master-sync-fkie
     touch master_sync.update
+fi
+
+if [ -e libsvm.update ]
+then
+    echo libsvm.update already set
+else
+    apt-get install libsvm-dev
+    touch libsvm.update
 fi
 
 
