@@ -67,6 +67,16 @@ else
     touch people.update
 fi
 
+if [ -e env.update ]
+then
+    echo env already installed already set
+else
+    echo export TURTLEBOT_3D_SENSOR=kinect >> /etc/environment
+    echo export TURTLEBOT_BATTERY=/sys/class/power_supply/BAT1 >> /etc/environment
+    touch env.update
+    do_reboot=1
+fi
+
 
 if [ "$do_reboot" -eq 1 ]
 then
