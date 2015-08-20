@@ -21,7 +21,7 @@ then
     echo Hostname already set
 else
     rm set_hostname.sh*  > /dev/null 2>&1
-    rm macadr-eth1.sh*  > /dev/null 2>&1
+    rm macadr-eth1.txt*  > /dev/null 2>&1
     wget -q https://raw.githubusercontent.com/smARTLab-liv/tbsetup/master/set_hostname.sh
     wget -q https://raw.githubusercontent.com/smARTLab-liv/tbsetup/master/macadr-eth1.txt
     chmod +x set_hostname.sh
