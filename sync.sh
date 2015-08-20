@@ -29,6 +29,19 @@ else
     do_reboot=1
 fi
 
+if [ -e hostnames.update ]
+then
+    echo Hostname file already updated
+else
+    rm hosts*  > /dev/null 2>&1
+    wget -q https://raw.githubusercontent.com/smARTLab-liv/tbsetup/master/hosts
+    hostname=$(cat /etc/hostname)
+    cat hosts | sed s/"HOSTNAME"/"$hostname"/ > /tmp/newhosts
+    mv /tmp/newhosts /etc/hosts
+    touch hostnames.update
+fi
+
+
 if [ -e bash_rc.update ]
 then
     echo bash-rc updated
@@ -122,6 +135,7 @@ else
 fi
 
 if [ -x /home/turtlebot/ros/src/swarming_turtles ]
+then
     cd /home/turtlebot/ros/src/swarming_turtles
     git pull
 fi

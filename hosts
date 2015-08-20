@@ -1,0 +1,30 @@
+127.0.0.1	localhost
+127.0.1.1	HOSTNAME
+
+10.50.55.2      smartlab04
+10.50.55.3      smartlab05
+
+10.30.129.131	mitro
+
+10.30.129.61    tb01
+10.30.129.62    tb02
+10.30.129.63    tb03
+10.30.129.64    tb04
+10.30.129.65    tb05
+10.30.129.66    tb06
+10.30.129.67    tb07
+10.30.129.68    tb08
+10.30.129.69    tb09
+10.30.129.70    tb10
+10.30.129.71    tb11
+10.30.129.72    tb12
+10.30.129.73    tb13
+10.30.129.74    tb14
+10.30.129.75    tb15
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
