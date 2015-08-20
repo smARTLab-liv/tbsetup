@@ -41,6 +41,15 @@ else
     touch hostnames.update
 fi
 
+if [ -e minimal_launch.update ]
+then
+    echo Minimal launch updated
+else
+    rm minimal.launch*  > /dev/null 2>&1
+    wget -q https://raw.githubusercontent.com/smARTLab-liv/smartlab_turtlebot_launchers/master/launch/minimal.launch
+    mv minimal.launch /etc/ros/indigo/turtlebot_bringup.d/
+    touch minimal_launch.update
+fi    
 
 if [ -e bash_rc.update ]
 then
