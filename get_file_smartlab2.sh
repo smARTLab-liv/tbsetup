@@ -11,7 +11,7 @@ test()
         rm sync_smartlab2.sh > /dev/null 2>&1
 	wget -q "https://raw.githubusercontent.com/smARTLab-liv/tbsetup/master/sync_smartlab2.sh"
 	chmod +x sync_smartlab2.sh
-	./sync_smarltab2.sh >> /home/turtlebot/scripts/sync.log
+	./sync_smartlab2.sh >> /home/turtlebot/scripts/sync.log
         exit
     else
         echo "No network connection available, skipping updates"
