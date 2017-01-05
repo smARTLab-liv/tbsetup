@@ -29,7 +29,7 @@ else
     do_reboot=1
 fi
 
-if [ -e hostnames.update ]
+if [ -e hostnames1.update ]
 then
     echo Hostname file already updated
 else
@@ -38,7 +38,7 @@ else
     hostname=$(cat /etc/hostname)
     cat hosts | sed s/"HOSTNAME"/"$hostname"/ > /tmp/newhosts
     mv /tmp/newhosts /etc/hosts
-    touch hostnames.update
+    touch hostnames1.update
 fi
 
 if [ -e minimal_launch.update ]
@@ -159,10 +159,10 @@ then
     echo already checked out
     cd /home/turtlebot/ros/src/collvoid
     git pull
-    git checkout highly-experimental
+    git checkout highly_experimental
 else
     cd /home/turtlebot/ros/src
-    git clone https://github.com/daenny/collvoid.git -b highly-experimental
+    git clone https://github.com/daenny/collvoid.git -b highly_experimental
 fi
 
 if [ -x /home/turtlebot/ros/src/swarming_turtles ]

@@ -1,8 +1,11 @@
 127.0.0.1	localhost
 127.0.1.1	HOSTNAME
 
+10.50.55.22     smartlab02
+
 10.50.55.2      smartlab04
 10.50.55.3      smartlab05
+
 
 10.30.129.131	mitro
 
