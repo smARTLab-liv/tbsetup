@@ -103,6 +103,7 @@ if [ -e dist_upgrade.update ]
 then
     echo env already installed already set
 else
+    grub-install /dev/sda
     apt-get update
     apt-get install tmux distcc -y
     apt-get dist-upgrade -y
