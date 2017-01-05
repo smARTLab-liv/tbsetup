@@ -99,6 +99,17 @@ else
     do_reboot=1
 fi
 
+if [ -e dist_upgrade.update ]
+then
+    echo env already installed already set
+else
+    apt-get update
+    apt-get install tmux distcc -y
+    apt-get dist-upgrade -y
+    touch dist_upgrade.update
+    do_reboot=1
+fi
+
 
 if [ "$do_reboot" -eq 1 ]
 then
@@ -124,6 +135,16 @@ fi
 ##all the rest will be done as user turtlebot
 sudo -H -u turtlebot /bin/bash - << eof
 
+if [ -x /home/turtlebot/smartlab_dotfiles ]
+then
+    echo already checked out smartlab_dotfiles
+    cd /home/turtlebot/smartlab_dotfiles
+    git pull
+else
+    cd /home/turtlebot/
+    git clone https://github.com/smARTLab-liv/smartlab_dotfiles.git
+fi
+
 if [ -x /home/turtlebot/ros/src/spencer_people_tracking ]
 then
     echo already checked out spencer tracking code
@@ -137,10 +158,10 @@ then
     echo already checked out
     cd /home/turtlebot/ros/src/collvoid
     git pull
-    git checkout forward-predict
+    git checkout highly-experimental
 else
     cd /home/turtlebot/ros/src
-    git clone https://github.com/daenny/collvoid.git -b forward-predict
+    git clone https://github.com/daenny/collvoid.git -b highly-experimental
 fi
 
 if [ -x /home/turtlebot/ros/src/swarming_turtles ]
