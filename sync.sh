@@ -106,7 +106,14 @@ else
     grub-install /dev/sda
     apt-get update
     apt-get install tmux distcc -y
-    apt-get dist-upgrade -y
+
+    unset UCF_FORCE_CONFFOLD
+    export UCF_FORCE_CONFFNEW=YES
+    ucf --purge /boot/grub/menu.lst
+
+    export DEBIAN_FRONTEND=noninteractive
+    apt-get update
+    apt-get -o Dpkg::Options::="--force-confdef" --force-yes -fuy dist-upgrade
     touch dist_upgrade.update
     do_reboot=1
 fi
@@ -143,7 +150,7 @@ then
     git pull
 else
     cd /home/turtlebot/
-    git clone https://github.com/smARTLab-liv/smartlab_dotfiles.git
+    git clone git@github.com:smARTLab-liv/smartlab_dotfiles.git
 fi
 
 if [ -x /home/turtlebot/ros/src/spencer_people_tracking ]
