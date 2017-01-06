@@ -178,17 +178,17 @@ then
     git pull
 fi
 
-source /opt/ros/indigo/setup.bash
-source /home/turtlebot/ros/devel/setup.bash
-
-export ROS_WORKSPACE=/home/turtlebot/ros
-export ROS_PACKAGE_PATH=$ROS_WORKSPACE:$ROS_PACKAGE_PATH
-
-cd /home/turtlebot/ros
-
-echo making catkin
-catkin_make
-
 eof
+
+# source /opt/ros/indigo/setup.bash
+# source /home/turtlebot/ros/devel/setup.bash
+
+# export ROS_WORKSPACE=/home/turtlebot/ros
+# export ROS_PACKAGE_PATH=$ROS_WORKSPACE:$ROS_PACKAGE_PATH
+
+# cd /home/turtlebot/ros
+
+# echo making catkin
+# catkin_make
 
 
